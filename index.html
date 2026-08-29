@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FireFlow for Firefly III — Support</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="icon.png">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <img src="icon.png" alt="">
+  <div>
+    <h1>FireFlow</h1>
+    <p>A native iPhone client for your own Firefly III server</p>
+  </div>
+</header>
+
+<p class="lead">
+  FireFlow talks to one server: the one you point it at. There is no account to
+  create, no backend of ours in the middle, and no analytics. If your Firefly III
+  instance is on your home network, your finances never leave your house.
+</p>
+
+<h2>What you need</h2>
+<ul>
+  <li>A <a href="https://www.firefly-iii.org">Firefly III</a> instance you can reach — on the internet, on your LAN, or through a VPN.</li>
+  <li>A <strong>Personal Access Token</strong> from that instance: <em>Options → Profile → OAuth → Personal Access Tokens → Create new token</em>.</li>
+  <li>iOS 26 or later.</li>
+</ul>
+
+<h2>Trying it without a server</h2>
+<p>
+  Tap <strong>Try the demo</strong> on the first screen. It runs on sample data
+  built into the app, makes no network calls at all, and lets you create, edit
+  and delete transactions to see how the app behaves. Nothing you do in demo
+  mode survives a relaunch.
+</p>
+
+<h2>If something isn't working</h2>
+
+<h3>"Can't reach your server"</h3>
+<p>
+  Almost always one of three things. If the address is a local one
+  (<code>192.168.x.x</code>, <code>10.x.x.x</code>, or a <code>.local</code> name),
+  you have to be on that network — FireFlow says so explicitly when it recognises
+  a LAN address. Otherwise, check the port: leaving it blank uses the scheme's
+  default (443 for HTTPS, 80 for HTTP), which is right for most setups but wrong
+  if yours listens elsewhere. And if you run Firefly III under a subpath behind a
+  reverse proxy, that subpath belongs in the <em>path</em> field.
+</p>
+
+<h3>"The server answered with its login page"</h3>
+<p>
+  The token wasn't accepted. Firefly III redirects unauthenticated API calls to
+  its web login rather than returning an error, so this is what a wrong, expired
+  or revoked token looks like. Create a fresh Personal Access Token and paste it
+  again — make sure it's a <em>Personal Access Token</em> and not an OAuth client
+  ID.
+</p>
+
+<h3>A certificate warning</h3>
+<p>
+  If your instance uses a self-signed certificate, FireFlow will refuse it by
+  default and say so. There's a per-server setting to allow it. Consider what
+  that means before switching it on: it disables the check that would otherwise
+  tell you someone is intercepting the connection.
+</p>
+
+<h3>Changes that say "waiting to sync"</h3>
+<p>
+  You saved something while the server was unreachable. FireFlow keeps it and
+  sends it when the server comes back — it will not be lost, and it will not be
+  sent twice. <em>Settings → Sync</em> shows everything outstanding, and anything
+  the server refused outright appears there with the reason and a choice of
+  retrying or discarding it.
+</p>
+
+<h2>Getting help</h2>
+<p>
+  Email <a href="mailto:akrall@rhouse.mx">akrall@rhouse.mx</a>. Telling me what
+  the app said, whether your server is local or public, and what you were doing
+  at the time will usually get to the answer in one reply.
+</p>
+
+<footer>
+  <p>
+    <a href="privacy.html">Privacy policy</a>
+  </p>
+  <p>
+    FireFlow is an independent app and is not affiliated with the Firefly III
+    project. Firefly III is by James Cole and is licensed AGPL-3.0.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
